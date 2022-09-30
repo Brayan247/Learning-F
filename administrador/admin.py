@@ -9,32 +9,46 @@ class AdministradorAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthGroup)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthGroupAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthGroupPermissions)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthGroupPermissionsAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthPermission)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthPermissionAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthUser)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthUserAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthUserGroups)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthUserGroupsAdmin(ImportExportModelAdmin):
     pass
 
 @admin.register(AuthUserUserPermissions)
-class AdministradorAdmin(ImportExportModelAdmin):
+class AuthUserUserPermissionsAdmin(ImportExportModelAdmin):
     pass
 
+@admin.register(LogsSystemFintech)
+class LogsSystemFintechAdmin(ImportExportModelAdmin):
+    pass
 
-admin.site.register(LogsSystemFintech)
-admin.site.register(DjangoAdminLog)
-admin.site.register(DjangoContentType)
-admin.site.register(DjangoMigrations)
-admin.site.register(DjangoSession)
+@admin.register(DjangoAdminLog)
+class DjangoAdminLogAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(DjangoContentType)
+class DjangoContentTypeAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(DjangoMigrations)
+class DjangoMigrationsAdmin(ImportExportModelAdmin):
+    pass
+
+@admin.register(DjangoSession)
+class DjangoSessionAdmin(ImportExportModelAdmin):
+    pass
+

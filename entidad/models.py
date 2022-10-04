@@ -31,7 +31,7 @@ class Entidad(models.Model):
     plantilla = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'entidad'
 
 class Canal(models.Model):
@@ -45,7 +45,7 @@ class Canal(models.Model):
     id_entidad = models.ForeignKey('Entidad', models.DO_NOTHING, db_column='id_entidad')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'canal'
 
 class TipoCanal(models.Model):
@@ -57,7 +57,7 @@ class TipoCanal(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tipo_canal'
 
 class CamposPersonalizadosEntidad(models.Model):
@@ -66,7 +66,7 @@ class CamposPersonalizadosEntidad(models.Model):
     habilitado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'campos_personalizados_entidad'
         unique_together = (('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo'),)
 
@@ -83,7 +83,7 @@ class Contrato(models.Model):
     entidad_identidad = models.ForeignKey('Entidad', models.DO_NOTHING, db_column='entidad_idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'contrato'
         unique_together = (('idcontrato', 'entidad_identidad'),)
 
@@ -98,7 +98,7 @@ class Emoticon(models.Model):
     identidad = models.ForeignKey('Entidad', models.DO_NOTHING, db_column='idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'emoticon'
 
 
@@ -116,7 +116,7 @@ class RecursosEntidad(models.Model):
     id_modulo = models.IntegerField(unique=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'recursos_entidad'
 
 class ConfigRecurso(models.Model):
@@ -128,7 +128,7 @@ class ConfigRecurso(models.Model):
     id_recurso_entidad = models.ForeignKey('RecursosEntidad', models.DO_NOTHING, db_column='id_recurso_entidad')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'config_recurso'
 
 class ListaNegra(models.Model):
@@ -144,7 +144,7 @@ class ListaNegra(models.Model):
     id_recursos_entidad = models.ForeignKey('RecursosEntidad', models.DO_NOTHING, db_column='id_recursos_entidad')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'lista_negra'
 
 class ServiciosEntidad(models.Model):
@@ -155,7 +155,7 @@ class ServiciosEntidad(models.Model):
     id_entidad = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'servicios_entidad'
 
 class Pagina(models.Model):
@@ -172,7 +172,7 @@ class Pagina(models.Model):
     fecha_actualizacion = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pagina'
 
 class Sucursal(models.Model):
@@ -185,7 +185,7 @@ class Sucursal(models.Model):
     id_entidad = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sucursal'
 
 class TerminosCondiciones(models.Model):
@@ -198,7 +198,7 @@ class TerminosCondiciones(models.Model):
     entidad_identidad = models.IntegerField(db_column='entidad_idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'terminos_condiciones'
 
 class Intencion(models.Model):
@@ -217,7 +217,7 @@ class Intencion(models.Model):
     identidad = models.IntegerField(db_column='idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'intencion'
         unique_together = (('idintencion', 'idrecursos', 'identidad'),)
 
@@ -231,7 +231,7 @@ class IntencionTipo(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'intencion_tipo'
 
 class Servicio(models.Model):
@@ -243,5 +243,5 @@ class Servicio(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'servicio'

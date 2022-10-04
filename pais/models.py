@@ -22,7 +22,7 @@ class Pais(models.Model):
     numericos = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pais'
 
 class Moneda(models.Model):
@@ -37,7 +37,7 @@ class Moneda(models.Model):
     pais = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'moneda'
 
 class Ciudad(models.Model):
@@ -58,7 +58,5 @@ class Ciudad(models.Model):
     pais_idpais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='pais_idPais')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ciudad'
-
-

@@ -21,7 +21,7 @@ class Modulo(models.Model):
     vistapath = models.CharField(db_column='vistaPath', max_length=95)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'modulo'
 
 
@@ -30,7 +30,7 @@ class ModuloPerfil(models.Model):
     idperfil = models.IntegerField(db_column='idPerfil')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'modulo_perfil'
         unique_together = (('idmodulo', 'idperfil'),)
 
@@ -54,6 +54,6 @@ class Moduloadministrador(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'moduloadministrador'
         unique_together = (('idadministrador', 'idmodulo'),)

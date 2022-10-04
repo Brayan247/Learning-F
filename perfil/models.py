@@ -9,7 +9,7 @@ class Perfil(models.Model):
     fecha_actualizacion = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'perfil'
 
 
@@ -28,5 +28,5 @@ class PerfilAdministrador(models.Model):
     fecha_actualizacion = models.DateTimeField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'perfil_administrador'

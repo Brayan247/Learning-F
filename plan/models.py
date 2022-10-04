@@ -11,7 +11,7 @@ class Plan(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'plan'
 
 class DetallePlan(models.Model):
@@ -20,7 +20,7 @@ class DetallePlan(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_plan'
         unique_together = (('plan_idplan', 'modulo_idmodulo'),)
 
@@ -30,6 +30,6 @@ class PlanContrato(models.Model):
     contrato_entidad_identidad = models.IntegerField(db_column='contrato_entidad_idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'plan_contrato'
         unique_together = (('plan_idplan', 'contrato_idcontrato', 'contrato_entidad_identidad'),)

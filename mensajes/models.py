@@ -11,7 +11,7 @@ class Mensaje(models.Model):
     identidad = models.IntegerField(db_column='idEntidad')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mensaje'
 
 class MensajeErrores(models.Model):
@@ -24,7 +24,7 @@ class MensajeErrores(models.Model):
     id_error = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'mensaje_errores'
 
 class CatalogosErrores(models.Model):
@@ -35,5 +35,5 @@ class CatalogosErrores(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'catalogos_errores'

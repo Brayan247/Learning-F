@@ -14,7 +14,7 @@ class CamposPersonalizadosNuevaCuenta(models.Model):
     nopaste = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'campos_personalizados_nueva_cuenta'
 
 class TiposCampos(models.Model):
@@ -26,7 +26,7 @@ class TiposCampos(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tipos_campos'
 
 class OpcionesCampo(models.Model):
@@ -39,5 +39,6 @@ class OpcionesCampo(models.Model):
     idcampo_opcion = models.IntegerField(db_column='idCampo_opcion')  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'opciones_campo'
+

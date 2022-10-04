@@ -19,7 +19,7 @@ class ClienteBot(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cliente_bot'
 
 class ClienteBotHasEntidad(models.Model):
@@ -28,6 +28,6 @@ class ClienteBotHasEntidad(models.Model):
     eliminado = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cliente_bot_has_entidad'
         unique_together = (('cliente_bot_idcliente', 'entidad_identidad'),)

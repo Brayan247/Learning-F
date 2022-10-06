@@ -10,7 +10,6 @@ from .models import *
 class AdministradorAdmin(ImportExportModelAdmin):
     pass
 
-
-@admin.register(LogsSystemFintech)
-class LogsSystemFintechAdmin(ImportExportModelAdmin):
+@admin.register(UserEntidad)
+class UserEntidadAdmin(ImportExportModelAdmin):
     pass

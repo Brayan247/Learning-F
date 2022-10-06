@@ -1,4 +1,8 @@
+from pyexpat import model
 from django.db import models
+
+# Utilizado para acceder a los modelos del admin
+from django.contrib.auth.models import User
 
 class Administrador(models.Model):
     idadministrador = models.AutoField(db_column='idAdministrador', primary_key=True)  # Field name made lowercase.
@@ -34,15 +38,13 @@ class Administrador(models.Model):
         managed = True
         db_table = 'administrador'
 
-class LogsSystemFintech(models.Model):
-    id_log = models.AutoField(primary_key=True)
-    nombre_tabla = models.CharField(max_length=45)
-    data = models.TextField(db_collation='utf8mb4_bin')
-    tipo = models.CharField(max_length=45)
-    idadministrador = models.CharField(db_column='idAdministrador', max_length=45)  # Field name made lowercase.
-    fecha_registro = models.DateTimeField()
-    fecha_actualizacion = models.DateTimeField(blank=True, null=True)
+class UserEntidad(models.Model):
+    id_user_entidad = models.AutoField(db_column='id_user_entidad', primary_key=True)
+    #Accederemos al modelo de User del admin
+    id_user  = models.ForeignKey(User, models.DO_NOTHING, db_column = 'id_user')
+    id_entidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='id_entidad')
 
     class Meta:
         managed = True
-        db_table = 'logs_system_fintech'
+        db_table = 'user_entidad'
+        unique_together = (('id_user'),)

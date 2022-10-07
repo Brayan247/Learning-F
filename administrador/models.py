@@ -1,6 +1,5 @@
 from pyexpat import model
 from django.db import models
-
 # Utilizado para acceder a los modelos del admin
 from django.contrib.auth.models import User
 
@@ -34,6 +33,7 @@ class Administrador(models.Model):
     fecha_cambio_clave = models.DateTimeField(blank=True, null=True)
     fecha_recupero_clave = models.DateTimeField(blank=True, null=True)
     idtipoidentificacion = models.IntegerField(db_column='idTipoIdentificacion', blank=True, null=True)  # Field name made lowercase.    
+    
     class Meta:
         managed = True
         db_table = 'administrador'

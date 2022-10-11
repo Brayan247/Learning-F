@@ -31,7 +31,7 @@ class Entidad(models.Model):
     plantilla = models.IntegerField()
 
     def __str__(self):
-        return f"{self.identidad}"
+        return f"{self.nombre}"
 
     class Meta:
         managed = True
@@ -104,8 +104,6 @@ class Emoticon(models.Model):
         managed = True
         db_table = 'emoticon'
 
-
-
 class RecursosEntidad(models.Model):
     idrecursos = models.AutoField(db_column='idRecursos', primary_key=True)  # Field name made lowercase.
     path = models.CharField(max_length=45)
@@ -163,7 +161,7 @@ class ServiciosEntidad(models.Model):
 
 class Pagina(models.Model):
     idpagina = models.AutoField(db_column='idPagina', primary_key=True)  # Field name made lowercase.
-    identidad = models.IntegerField(db_column='idEntidad')  # Field name made lowercase.
+    identidad = models.ForeignKey('Entidad', models.DO_NOTHING,db_column='idEntidad')  # Field name made lowercase.
     nombre = models.CharField(max_length=45)
     clave = models.CharField(max_length=60)
     token = models.CharField(max_length=200)

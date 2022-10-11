@@ -13,6 +13,9 @@ class CamposPersonalizadosNuevaCuenta(models.Model):
     tipo = models.ForeignKey('TiposCampos', models.DO_NOTHING, db_column='tipo')
     nopaste = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.nombre}"     
+
     class Meta:
         managed = True
         db_table = 'campos_personalizados_nueva_cuenta'

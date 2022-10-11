@@ -1,10 +1,13 @@
+from django.http import HttpResponse
 from import_export.admin import ImportExportModelAdmin
 #
 from django.contrib import admin
 from .models import *
+from session.utilities import *
 
 @admin.register(Administrador)
 class AdministradorAdmin(ImportExportModelAdmin):
+    list_display = ('idadministrador', 'usuario', 'nombres', 'apellidos')
     pass
 
 @admin.register(UserEntidad)

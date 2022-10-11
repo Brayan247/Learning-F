@@ -93,9 +93,7 @@ DATABASES = {
 
 #Session
 # No guardar ingformacion de la session
-SESSION_SAVE_EVERY_REQUEST = False
-# Cerrar la sesion cuando se cierra el navegador
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_SAVE_EVERY_REQUEST = False
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

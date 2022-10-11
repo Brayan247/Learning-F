@@ -2,7 +2,6 @@ from pyexpat import model
 from django.db import models
 # Utilizado para acceder a los modelos del admin
 from django.contrib.auth.models import User
-from session import *
 
 class Administrador(models.Model):
     idadministrador = models.AutoField(db_column='idAdministrador', primary_key=True)  # Field name made lowercase.
@@ -45,12 +44,8 @@ class UserEntidad(models.Model):
     id_user  = models.ForeignKey(User, models.DO_NOTHING, db_column = 'id_user')
     id_entidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='id_entidad')
 
-    def __init__(self):
-        ue = UserEntidad.objects.filter(id_entidad = id_entidad())
-        print(ue)
-
     def __str__(self):
-        return f"{self.id_user_entidad}{self.id_user}{self.id_entidad}"
+        return f"{self.id_user_entidad}{self.id_user}{self.id_entidad}" 
 
     class Meta:
         managed = True

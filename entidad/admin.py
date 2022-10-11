@@ -5,6 +5,7 @@ from .models import *
 
 @admin.register(Entidad)
 class EntidadAdmin(ImportExportModelAdmin):
+    list_display = ('identidad', 'nombre')
     pass
 
 @admin.register(CamposPersonalizadosEntidad)

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django import apps
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'pais',
     'perfil',
     'plan',
+    'session'
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -88,6 +91,11 @@ DATABASES = {
     }
 }
 
+#Session
+# No guardar ingformacion de la session
+SESSION_SAVE_EVERY_REQUEST = False
+# Cerrar la sesion cuando se cierra el navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

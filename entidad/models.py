@@ -30,6 +30,9 @@ class Entidad(models.Model):
     tiempo_espera_code = models.IntegerField()
     plantilla = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.identidad}"
+
     class Meta:
         managed = True
         db_table = 'entidad'

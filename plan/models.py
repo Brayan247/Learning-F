@@ -18,7 +18,7 @@ class DetallePlan(models.Model):
     plan_idplan = models.OneToOneField('Plan', models.DO_NOTHING, db_column='plan_idPlan', primary_key=True)  # Field name made lowercase.
     modulo_idmodulo = models.IntegerField(db_column='modulo_idModulo')  # Field name made lowercase.
     eliminado = models.IntegerField()
-
+    
     class Meta:
         managed = True
         db_table = 'detalle_plan'

@@ -8,9 +8,9 @@ class Entidad(models.Model):
     logo_vertical = models.ImageField()
     color_primario = models.CharField(max_length=45)
     color_secundario = models.CharField(max_length=45)
-    favicon = models.ImageField(blank=True, null=True)
+    favicon = models.URLField(blank=True, null=True)
     direccion = models.CharField(max_length=400, blank=True, null=True)
-    copyright = models.URLField(max_length=400, blank=True, null=True)
+    copyright = models.CharField(max_length=400, blank=True, null=True)
     contacto = models.CharField(max_length=45, blank=True, null=True)
     correo = models.CharField(max_length=45, blank=True, null=True)
     lema = models.CharField(max_length=45, blank=True, null=True)
@@ -62,16 +62,6 @@ class TipoCanal(models.Model):
     class Meta:
         managed = True
         db_table = 'tipo_canal'
-
-class CamposPersonalizadosEntidad(models.Model):
-    entidad_identidad = models.OneToOneField('Entidad', models.DO_NOTHING, db_column='entidad_idEntidad', primary_key=True)  # Field name made lowercase.
-    campos_personalizados_nueva_cuenta_idcampo = models.ForeignKey('campos.CamposPersonalizadosNuevaCuenta', models.DO_NOTHING, db_column='campos_personalizados_nueva_cuenta_idCampo')  # Field name made lowercase.
-    habilitado = models.IntegerField()
-
-    class Meta:
-        managed = True
-        db_table = 'campos_personalizados_entidad'
-        unique_together = (('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo'),)
 
 class Contrato(models.Model):
     idcontrato = models.AutoField(db_column='idContrato', primary_key=True)  # Field name made lowercase.
@@ -161,7 +151,7 @@ class ServiciosEntidad(models.Model):
 
 class Pagina(models.Model):
     idpagina = models.AutoField(db_column='idPagina', primary_key=True)  # Field name made lowercase.
-    identidad = models.ForeignKey('Entidad', models.DO_NOTHING,db_column='idEntidad')  # Field name made lowercase.
+    identidad = models.IntegerField(db_column='idEntidad')  # Field name made lowercase.
     nombre = models.CharField(max_length=45)
     clave = models.CharField(max_length=60)
     token = models.CharField(max_length=200)

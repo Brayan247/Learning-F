@@ -20,6 +20,16 @@ class CamposPersonalizadosNuevaCuenta(models.Model):
         managed = True
         db_table = 'campos_personalizados_nueva_cuenta'
 
+class CamposPersonalizadosEntidad(models.Model):
+    entidad_identidad = models.OneToOneField('entidad.Entidad', models.DO_NOTHING, db_column='entidad_idEntidad', primary_key=True)  # Field name made lowercase. 
+    campos_personalizados_nueva_cuenta_idcampo = models.ForeignKey('CamposPersonalizadosNuevaCuenta', models.DO_NOTHING, db_column='campos_personalizados_nueva_cuenta_idCampo')  # Field name made lowercase.
+    habilitado = models.IntegerField()
+
+    class Meta:
+        managed = True
+        db_table = 'campos_personalizados_entidad'
+        unique_together = (('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo'),)
+
 class TiposCampos(models.Model):
     idtipo = models.AutoField(db_column='idTipo', primary_key=True)  # Field name made lowercase.
     nombre = models.CharField(unique=True, max_length=45)

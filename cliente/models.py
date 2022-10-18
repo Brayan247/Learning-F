@@ -13,7 +13,7 @@ class ClienteBot(models.Model):
     recurso = models.TextField(db_collation='utf8mb4_bin', blank=True, null=True)
     entidad = models.TextField(db_collation='utf8mb4_bin', blank=True, null=True)
     dato_extra = models.TextField(db_collation='utf8mb4_bin', blank=True, null=True)
-    recurso_url = models.URLField(max_length=45, blank=True, null=True)
+    recurso_url = models.URLField()
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
     eliminado = models.IntegerField()
@@ -23,7 +23,7 @@ class ClienteBot(models.Model):
         db_table = 'cliente_bot'
 
 class ClienteBotHasEntidad(models.Model):
-    cliente_bot_idcliente = models.OneToOneField('ClienteBot', models.DO_NOTHING, db_column='cliente_bot_idCliente', primary_key=True)  # Field name made lowercase.
+    cliente_bot_idcliente = models.OneToOneField(ClienteBot, models.DO_NOTHING, db_column='cliente_bot_idCliente', primary_key=True)  # Field name made lowercase.
     entidad_identidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='entidad_idEntidad')  # Field name made lowercase.
     eliminado = models.IntegerField()
 

@@ -8,11 +8,6 @@ class EntidadAdmin(ImportExportModelAdmin):
     list_display = ('identidad', 'nombre')
     pass
 
-@admin.register(CamposPersonalizadosEntidad)
-class CamposPersonalizadosEntidadAdmin(ImportExportModelAdmin):
-    list_display = ('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo')
-    pass
-
 @admin.register(Contrato)
 class ContratoAdmin(ImportExportModelAdmin):
     list_display = ('idcontrato', 'nombre', 'acronimo', 'duracion')

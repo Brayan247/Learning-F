@@ -16,7 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # Admin Views
+from campos.admin_views import *
+from entidad.admin_views import *
+from mensajes.admin_views import *
 
 urlpatterns = [
+    path('admin/campos/campospersonalizadosentidad/', CamposPersonalizadosEntidadList.as_view()),
+    path('admin/entidad/canal/', CanalList.as_view()),
+    path('admin/entidad/entidad/', EntidadList.as_view()),
+    path('admin/entidad/emoticon/', EmoticonList.as_view()),
+    path('admin/entidad/intencion/', IntencionList.as_view()),
+    path('admin/entidad/pagina/', PaginaList.as_view()),
+    path('admin/entidad/recursosentidad/', RecursosEntidadList.as_view()),
+    path('admin/entidad/sucursal/', SucursalList.as_view()),
+    path('admin/entidad/terminoscondiciones/', TerminosYCondicionesList.as_view()),
+    path('admin/mensajes/mensaje/', MensajeList.as_view()),
+    path('admin/mensajes/mensajeerrores/', MensajesErroresList.as_view()),
     path('admin/', admin.site.urls),
 ]

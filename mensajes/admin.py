@@ -10,7 +10,7 @@ class AMensajeAdmin(ImportExportModelAdmin):
 
 @admin.register(MensajeErrores)
 class MensajeErroresAdmin(ImportExportModelAdmin):
-    list_display = ('idmensaje_error','mensaje')
+    list_display = ('idmensaje_error','mensaje', 'id_entidad')
     pass
 
 @admin.register(CatalogosErrores)

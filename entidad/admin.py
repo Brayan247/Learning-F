@@ -20,7 +20,7 @@ class EmoticonAdmin(ImportExportModelAdmin):
 
 @admin.register(Canal)
 class AdministradorAdmin(ImportExportModelAdmin):
-    list_display = ('idcanal', 'nombre')
+    list_display = ('idcanal', 'nombre', 'id_entidad')
     pass
 
 @admin.register(TipoCanal)
@@ -30,7 +30,7 @@ class TipoCanalAdmin(ImportExportModelAdmin):
 
 @admin.register(RecursosEntidad)
 class RecursosEntidadAdmin(ImportExportModelAdmin):
-    list_display = ('idrecursos','path', 'tipo')
+    list_display = ('idrecursos','path', 'tipo', 'id_entidad')
     pass
 
 @admin.register(ConfigRecurso)
@@ -45,6 +45,7 @@ class ListaNegraAdmin(ImportExportModelAdmin):
 
 @admin.register(ServiciosEntidad)
 class ServiciosEntidadAdmin(ImportExportModelAdmin):
+    list_display = ('id_servicio', 'id_entidad')
     pass
 
 @admin.register(Pagina)
@@ -54,17 +55,17 @@ class PaginaAdmin(ImportExportModelAdmin):
 
 @admin.register(Sucursal)
 class SucursalAdmin(ImportExportModelAdmin):
-    list_display = ('nombre','referencia')
+    list_display = ('nombre','referencia','id_entidad')
     pass
 
 @admin.register(TerminosCondiciones)
 class TerminosCondicionesAdmin(ImportExportModelAdmin):
-    list_display = ('idtermino','titulo', 'descripcion')
+    list_display = ('idtermino','titulo', 'descripcion', 'entidad_identidad')
     pass
 
 @admin.register(Intencion)
 class IntencionAdmin(ImportExportModelAdmin):
-    list_display = ('idintencion', 'intencion', 'descripcion')
+    list_display = ('idintencion', 'intencion', 'descripcion', 'identidad')
     pass
 
 @admin.register(IntencionTipo)

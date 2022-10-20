@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} Seleccione pagina a modificar | Sitio de administración de Django {% endblock %}
+{% block content %}
+<div class="breadcrumbs">
+    <a href="/admin/">Inicio</a>
+    &rsaquo; <a href="/admin/entidad/">Entidad</a>
+    &rsaquo; Paginas
+</div>
+<div class="main" id="main">
+    <div class="content">
+        <!-- Content -->
+        <div id="content" class="">
+            <h1>Seleccione pagina a modificar</h1>
+            <div id="content-main">
+                <div class="module" id="changelist">
+                    <div class="changelist-form-container">
+                        <form id="changelist-form" method="post" novalidate=""><input type="hidden"
+                                name="csrfmiddlewaretoken"
+                                value="p8VRdfTBwNpFxn079CEulSwKqhT6peYnQLVXP2AjogS92igfLRoUAouAlxkIt91H">
+                            <div class="results">
+                                <table id="result_list">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="sortable column-idpagina">
+                                                <div class="text"><a href="?o=0">Idpagina</a></div>
+                                                <div class="clear"></div>
+                                            </th>
+                                            <th scope="col" class="sortable column-identidad">
+                                                <div class="text"><a href="?o=1">Identidad</a></div>
+                                                <div class="clear"></div>
+                                            </th>
+                                            <th scope="col" class="sortable column-nombre">
+                                                <div class="text"><a href="?o=2">Nombre</a></div>
+                                                <div class="clear"></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for c in pagina_list %}
+                                        <tr>
+                                            <td><a
+                                                    href="/admin/entidad/pagina/{{c.idpagina}}/change/">{{c.idpagina}}</a>
+                                            </td>
+                                            <td>{{ c.identidad }}</td>
+                                            <td>{{ c.nombre }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+    </div>
+</div>
+{% endblock %}

@@ -38,6 +38,9 @@ class TiposCampos(models.Model):
     fecha_registro = models.DateTimeField()
     eliminado = models.IntegerField()
 
+    def __str__(self):
+        return f"{self.nombre}"
+
     class Meta:
         managed = True
         db_table = 'tipos_campos'

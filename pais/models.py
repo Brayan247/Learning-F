@@ -57,6 +57,9 @@ class Ciudad(models.Model):
     id_padre = models.IntegerField()
     pais_idpais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='pais_idPais')  # Field name made lowercase.
 
+    def __str__(self):
+        return f"{self.ciudad}"
+
     class Meta:
         managed = True
         db_table = 'ciudad'

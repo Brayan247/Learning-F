@@ -11,7 +11,7 @@ class Pais(models.Model):
     idadministradoractualizo = models.IntegerField(db_column='idAdministradorActualizo', blank=True, null=True)  # Field name made lowercase.
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
-    eliminado = models.TextField()  # This field type is a guess.
+    eliminado = models.IntegerField(default=0)  # This field type is a guess.
     limite = models.TextField(blank=True, null=True)  # This field type is a guess.
     idmoneda = models.IntegerField(db_column='idMoneda', blank=True, null=True)  # Field name made lowercase.
     min_digitos_cedula = models.IntegerField(blank=True, null=True)
@@ -33,7 +33,7 @@ class Moneda(models.Model):
     descripcion = models.CharField(max_length=300)
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     pais = models.IntegerField()
 
     class Meta:
@@ -50,7 +50,7 @@ class Ciudad(models.Model):
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
     limite = models.TextField(blank=True, null=True)  # This field type is a guess.
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     comentario = models.CharField(max_length=500)
     zonahoraria = models.CharField(db_column='zonaHoraria', max_length=6, blank=True, null=True)  # Field name made lowercase.
     type = models.CharField(max_length=100)

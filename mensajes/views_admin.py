@@ -10,7 +10,7 @@ class MensajeList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Mensaje.objects.all()
     else:
-        queryset =  Mensaje.objects.all().filter(identidad = get_id_entidad())
+        queryset =  Mensaje.objects.all().filter(identidad = get_id_entidad()).filter(eliminado = 0)
 
 class MensajesErroresList(ListView):
     context_object_name = 'me_list'
@@ -18,5 +18,5 @@ class MensajesErroresList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  MensajeErrores.objects.all()
     else:
-        queryset =  MensajeErrores.objects.all().filter(id_entidad = get_id_entidad())
+        queryset =  MensajeErrores.objects.all().filter(id_entidad = get_id_entidad()).filter(eliminado = 0)
         

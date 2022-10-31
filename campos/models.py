@@ -9,7 +9,7 @@ class CamposPersonalizadosNuevaCuenta(models.Model):
     validador = models.IntegerField(blank=True, null=True)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     tipo = models.ForeignKey('TiposCampos', models.DO_NOTHING, db_column='tipo')
     nopaste = models.IntegerField()
 
@@ -24,6 +24,7 @@ class CamposPersonalizadosEntidad(models.Model):
     entidad_identidad = models.OneToOneField('entidad.Entidad', models.DO_NOTHING, db_column='entidad_idEntidad', primary_key=True)  # Field name made lowercase. 
     campos_personalizados_nueva_cuenta_idcampo = models.ForeignKey('CamposPersonalizadosNuevaCuenta', models.DO_NOTHING, db_column='campos_personalizados_nueva_cuenta_idCampo')  # Field name made lowercase.
     habilitado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
 
     class Meta:
         managed = True
@@ -36,7 +37,7 @@ class TiposCampos(models.Model):
     descripcion = models.CharField(max_length=45)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.nombre}"
@@ -51,7 +52,7 @@ class OpcionesCampo(models.Model):
     nombre = models.CharField(max_length=45)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     idcampo_opcion = models.IntegerField(db_column='idCampo_opcion')  # Field name made lowercase.
 
     class Meta:

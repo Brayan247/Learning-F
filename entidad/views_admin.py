@@ -10,7 +10,7 @@ class CanalList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Canal.objects.all()
     else:
-        queryset =  Canal.objects.all().filter(id_entidad = get_id_entidad())
+        queryset =  Canal.objects.all().filter(id_entidad = get_id_entidad()).filter(eliminado = 0)
         
 class EntidadList(ListView):
     context_object_name = 'entidad_list'
@@ -18,7 +18,7 @@ class EntidadList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Entidad.objects.all()
     else:
-        queryset =  Entidad.objects.all().filter(identidad = get_id_entidad())
+        queryset =  Entidad.objects.all().filter(identidad = get_id_entidad()).filter(eliminado = 0)
         
 class EmoticonList(ListView):
     context_object_name = 'emoticon_list'
@@ -26,7 +26,7 @@ class EmoticonList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Emoticon.objects.all()
     else:
-        queryset =  Emoticon.objects.all().filter(identidad = get_id_entidad())
+        queryset =  Emoticon.objects.all().filter(identidad = get_id_entidad()).filter(eliminado = 0)
 
 class PaginaList(ListView):
     context_object_name = 'pagina_list'
@@ -34,7 +34,7 @@ class PaginaList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Pagina.objects.all()
     else:
-        queryset =  Pagina.objects.all().filter(identidad = get_id_entidad())
+        queryset =  Pagina.objects.all().filter(identidad = get_id_entidad()).filter(eliminado = 0)
         
 class RecursosEntidadList(ListView):
     context_object_name = 're_list'
@@ -42,7 +42,7 @@ class RecursosEntidadList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  RecursosEntidad.objects.all()
     else:
-        queryset =  RecursosEntidad.objects.all().filter(id_entidad = get_id_entidad())
+        queryset =  RecursosEntidad.objects.all().filter(id_entidad = get_id_entidad()).filter(eliminado = 0)
 
 class SucursalList(ListView):
     context_object_name = 'sucursal_list'
@@ -50,7 +50,7 @@ class SucursalList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Sucursal.objects.all()
     else:
-        queryset =  Sucursal.objects.all().filter(id_entidad = get_id_entidad())
+        queryset =  Sucursal.objects.all().filter(id_entidad = get_id_entidad()).filter(eliminado = 0)
 
 class TerminosYCondicionesList(ListView):
     context_object_name = 'tyc_list'
@@ -58,7 +58,7 @@ class TerminosYCondicionesList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  TerminosCondiciones.objects.all()
     else:
-        queryset =  TerminosCondiciones.objects.all().filter(entidad_identidad = get_id_entidad())
+        queryset =  TerminosCondiciones.objects.all().filter(entidad_identidad = get_id_entidad()).filter(eliminado = 0)
 
 class IntencionList(ListView):
     context_object_name = 'intencion_list'
@@ -66,5 +66,5 @@ class IntencionList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  Intencion.objects.all()
     else:
-        queryset =  Intencion.objects.all().filter(identidad = get_id_entidad())
+        queryset =  Intencion.objects.all().filter(identidad = get_id_entidad()).filter(eliminado = 0)
 

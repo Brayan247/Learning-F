@@ -8,7 +8,7 @@ class Plan(models.Model):
     costo = models.CharField(max_length=45)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
 
     class Meta:
         managed = True
@@ -17,7 +17,7 @@ class Plan(models.Model):
 class DetallePlan(models.Model):
     plan_idplan = models.OneToOneField('Plan', models.DO_NOTHING, db_column='plan_idPlan', primary_key=True)  # Field name made lowercase.
     modulo_idmodulo = models.IntegerField(db_column='modulo_idModulo')  # Field name made lowercase.
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     
     class Meta:
         managed = True
@@ -28,6 +28,7 @@ class PlanContrato(models.Model):
     plan_idplan = models.IntegerField(db_column='plan_idPlan', primary_key=True)  # Field name made lowercase.
     contrato_idcontrato = models.IntegerField(db_column='contrato_idContrato')  # Field name made lowercase.
     contrato_entidad_identidad = models.IntegerField(db_column='contrato_entidad_idEntidad')  # Field name made lowercase.
+    eliminado = models.IntegerField(default=0)
 
     class Meta:
         managed = True

@@ -1,7 +1,8 @@
-from pyexpat import model
 from django.db import models
 # Utilizado para acceder a los modelos del admin
 from django.contrib.auth.models import User
+# Acciones de formulario
+
 
 class Administrador(models.Model):
     idadministrador = models.AutoField(db_column='idAdministrador', primary_key=True)  # Field name made lowercase.
@@ -32,7 +33,8 @@ class Administrador(models.Model):
     clavetemporal = models.CharField(db_column='claveTemporal', max_length=5, blank=True, null=True)  # Field name made lowercase.
     fecha_cambio_clave = models.DateTimeField(blank=True, null=True)
     fecha_recupero_clave = models.DateTimeField(blank=True, null=True)
-    idtipoidentificacion = models.IntegerField(db_column='idTipoIdentificacion', blank=True, null=True)  # Field name made lowercase.    
+    idtipoidentificacion = models.IntegerField(db_column='idTipoIdentificacion', blank=True, null=True)  # Field name made lowercase.
+    eliminado = models.IntegerField(default=0)    
     
     class Meta:
         managed = True
@@ -46,6 +48,11 @@ class UserEntidad(models.Model):
 
     def __str__(self):
         return f"{self.id_user_entidad}{self.id_user}{self.id_entidad}" 
+    
+    def has_delete_permission(self, obj=None):
+        if obj and obj.eliminado:
+            return False
+        return True
 
     class Meta:
         managed = True

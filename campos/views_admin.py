@@ -10,5 +10,5 @@ class CamposPersonalizadosEntidadList(ListView):
     if(get_user_id().is_superuser == True):
         queryset =  CamposPersonalizadosEntidad.objects.all()
     else:
-        queryset =  CamposPersonalizadosEntidad.objects.all().filter(entidad_identidad = get_id_entidad())
+        queryset =  CamposPersonalizadosEntidad.objects.all().filter(entidad_identidad = get_id_entidad()).filter(eliminado = 0)
     

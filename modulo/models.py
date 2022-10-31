@@ -15,7 +15,7 @@ class Modulo(models.Model):
     idadministradorregistro = models.IntegerField(db_column='idAdministradorRegistro')  # Field name made lowercase.
     idadministradoractualizo = models.IntegerField(db_column='idAdministradorActualizo', blank=True, null=True)  # Field name made lowercase.
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
     id_servicio = models.IntegerField(blank=True, null=True)
     vistapath = models.CharField(db_column='vistaPath', max_length=95)  # Field name made lowercase.
@@ -28,6 +28,7 @@ class Modulo(models.Model):
 class ModuloPerfil(models.Model):
     idmodulo = models.IntegerField(db_column='idModulo', primary_key=True)  # Field name made lowercase.
     idperfil = models.IntegerField(db_column='idPerfil')  # Field name made lowercase.
+    eliminado = models.IntegerField(default=0)
 
     class Meta:
         managed = True
@@ -42,7 +43,7 @@ class Moduloadministrador(models.Model):
     leer = models.IntegerField()
     crear = models.IntegerField()
     editar = models.IntegerField()
-    eliminar = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     fecha_lectura = models.DateTimeField()
     fecha_crear = models.DateTimeField(blank=True, null=True)
     fecha_editar = models.DateTimeField(blank=True, null=True)

@@ -7,7 +7,7 @@ class Mensaje(models.Model):
     codigo = models.CharField(max_length=5, blank=True, null=True)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     identidad = models.IntegerField(db_column='idEntidad')  # Field name made lowercase.
 
     class Meta:
@@ -19,7 +19,7 @@ class MensajeErrores(models.Model):
     mensaje = models.CharField(max_length=250)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
     id_entidad = models.IntegerField()
     id_error = models.IntegerField()
 
@@ -32,7 +32,7 @@ class CatalogosErrores(models.Model):
     nombre = models.CharField(max_length=45, blank=True, null=True)
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField()
+    eliminado = models.IntegerField(default=0)
 
     class Meta:
         managed = True

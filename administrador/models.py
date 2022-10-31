@@ -45,16 +45,11 @@ class UserEntidad(models.Model):
     #Accederemos al modelo de User del admin
     id_user  = models.ForeignKey(User, models.DO_NOTHING, db_column = 'id_user')
     id_entidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='id_entidad')
+    eliminado = models.IntegerField(default=0)  
 
     def __str__(self):
         return f"{self.id_user_entidad}{self.id_user}{self.id_entidad}" 
     
-    def has_delete_permission(self, obj=None):
-        if obj and obj.eliminado:
-            return False
-        return True
-
     class Meta:
         managed = True
         db_table = 'user_entidad'
-        unique_together = (('id_user'),)

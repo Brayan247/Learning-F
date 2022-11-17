@@ -28,16 +28,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    'administrador',
-    'campos',
-    'cliente',
-    'entidad',
-    'mensajes',
-    'modulo',
-    'pais',
-    'perfil',
-    'plan',
-    'session'
+    'apps.administrador',
+    'apps.campos',
+    'apps.cliente',
+    'apps.entidad',
+    'apps.mensajes',
+    'apps.modulo',
+    'apps.pais',
+    'apps.perfil',
+    'apps.plan',
 ]
 
 MIDDLEWARE = [

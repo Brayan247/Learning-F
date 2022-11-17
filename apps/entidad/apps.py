@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ModuloConfig(AppConfig):
+class EntidadConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'modulo'
+    name = 'apps.entidad'

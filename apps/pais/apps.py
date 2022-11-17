@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CamposConfig(AppConfig):
+class PaisConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'campos'
+    name = 'apps.pais'

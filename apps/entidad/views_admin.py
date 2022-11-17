@@ -2,7 +2,7 @@ from django.views.generic import ListView
 #
 from .models import *
 #
-from administrador.utilities import *
+from apps.administrador.utilities import *
 
 class CanalList(ListView):
     context_object_name = 'canal_list'

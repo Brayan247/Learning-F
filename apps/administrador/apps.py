@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PerfilConfig(AppConfig):
+class AdministradorConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'perfil'
+    name = 'apps.administrador'

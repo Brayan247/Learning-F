@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Session
 from django.contrib.sessions.models import Session
 # Models
-from administrador.models import UserEntidad
+from apps.administrador.models import UserEntidad
 
 def user_session_id():
     s = Session.objects.all()

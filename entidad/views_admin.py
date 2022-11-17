@@ -6,7 +6,7 @@ from administrador.utilities import *
 
 class CanalList(ListView):
     context_object_name = 'canal_list'
-    template_name = 'canal_list.html'
+    template_name = 'entidad/canal_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Canal.objects.all()
     else:
@@ -14,7 +14,7 @@ class CanalList(ListView):
         
 class EntidadList(ListView):
     context_object_name = 'entidad_list'
-    template_name = 'entidad_list.html'
+    template_name = 'entidad/entidad_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Entidad.objects.all()
     else:
@@ -22,7 +22,7 @@ class EntidadList(ListView):
         
 class EmoticonList(ListView):
     context_object_name = 'emoticon_list'
-    template_name = 'emoticon_list.html'
+    template_name = 'entidad/emoticon_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Emoticon.objects.all()
     else:
@@ -30,7 +30,7 @@ class EmoticonList(ListView):
 
 class PaginaList(ListView):
     context_object_name = 'pagina_list'
-    template_name = 'pagina_list.html'
+    template_name = 'entidad/pagina_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Pagina.objects.all()
     else:
@@ -38,7 +38,7 @@ class PaginaList(ListView):
         
 class RecursosEntidadList(ListView):
     context_object_name = 're_list'
-    template_name = 'recursosentidad_list.html'
+    template_name = 'entidad/recursosentidad_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  RecursosEntidad.objects.all()
     else:
@@ -46,7 +46,7 @@ class RecursosEntidadList(ListView):
 
 class SucursalList(ListView):
     context_object_name = 'sucursal_list'
-    template_name = 'sucursal_list.html'
+    template_name = 'entidad/sucursal_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Sucursal.objects.all()
     else:
@@ -54,7 +54,7 @@ class SucursalList(ListView):
 
 class TerminosYCondicionesList(ListView):
     context_object_name = 'tyc_list'
-    template_name = 'terminosycondiciones_list.html'
+    template_name = 'entidad/terminosycondiciones_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  TerminosCondiciones.objects.all()
     else:
@@ -62,7 +62,7 @@ class TerminosYCondicionesList(ListView):
 
 class IntencionList(ListView):
     context_object_name = 'intencion_list'
-    template_name = 'intencion_list.html'
+    template_name = 'entidad/intencion_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Intencion.objects.all()
     else:

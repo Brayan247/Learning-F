@@ -6,7 +6,7 @@ from administrador.utilities import *
 
 class MensajeList(ListView):
     context_object_name = 'mensaje_list'
-    template_name = 'mensaje_list.html'
+    template_name = 'mensajes/mensaje_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  Mensaje.objects.all()
     else:
@@ -14,7 +14,7 @@ class MensajeList(ListView):
 
 class MensajesErroresList(ListView):
     context_object_name = 'me_list'
-    template_name = 'mensajeserrores_list.html'
+    template_name = 'mensajes/mensajeserrores_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  MensajeErrores.objects.all()
     else:

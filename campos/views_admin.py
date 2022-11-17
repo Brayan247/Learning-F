@@ -6,7 +6,7 @@ from administrador.utilities import *
 
 class CamposPersonalizadosEntidadList(ListView):
     context_object_name = 'cpe_list'
-    template_name = 'campos_personalizados_entidad_list.html'
+    template_name = 'campos/campos_personalizados_entidad_list.html'
     if(get_user_id().is_superuser == True):
         queryset =  CamposPersonalizadosEntidad.objects.all()
     else:

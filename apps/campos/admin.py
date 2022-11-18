@@ -1,15 +1,7 @@
 from django.contrib import admin
 from .models import *
 
-def acticacion_Logica(self, request, queryset):
-    for object in queryset:
-        object.eliminado = 0
-        object.save()
-
-def eliminacion_Logica(self, request, queryset):
-    for object in queryset:
-        object.eliminado = 1
-        object.save()
+from apps.administrador.utilities import *
 
 class CamposPersonalizadosNuevaCuentaAdmin(admin.ModelAdmin):
     list_display = ('idcampo', 'nombre', 'placeholder', 'identificador')

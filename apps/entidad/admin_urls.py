@@ -1,9 +1,13 @@
 from django.urls import path
 from .views_admin import *
 from .views import *
+from apps.administrador.utilities import *
 
-urlpatterns = [
-    # admin views
+user = get_user_id()
+print(user.is_superuser)
+if(user.is_superuser == False):
+    urlpatterns = [
+    # views
     path('entidad/', EntidadList.as_view()),
     path('emoticon/', EmoticonList.as_view()),
     path('intencion/', IntencionList.as_view()),
@@ -12,4 +16,4 @@ urlpatterns = [
     path('sucursal/', SucursalList.as_view()),
     path('terminoscondiciones/', TerminosYCondicionesList.as_view()),
     path('canal/', CanalList.as_view()),
-]
+    ]

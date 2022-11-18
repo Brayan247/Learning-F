@@ -4,8 +4,8 @@ from apps import *
 # Admin Views
 
 urlpatterns = [
-    path('admin/campos/', include('apps.campos.urls_admin')),
-    path('admin/entidad/', include('apps.entidad.urls_admin')),
-    path('admin/mensajes/', include('apps.mensajes.urls_admin')),
+    # path('admin/campos/', include('apps.campos.admin_urls')),
+    # path('admin/entidad/', include('apps.entidad.admin_urls')),
+    # path('admin/mensajes/', include('apps.mensajes.admin_urls')),
     path('admin/', admin.site.urls),
 ]

@@ -1,24 +1,57 @@
-from import_export.admin import ImportExportModelAdmin
-#
 from django.contrib import admin
 from .models import *
 
-@admin.register(CamposPersonalizadosNuevaCuenta)
-class CamposPersonalizadosNuevaCuentaAdmin(ImportExportModelAdmin):
+def acticacion_Logica(self, request, queryset):
+    for object in queryset:
+        object.eliminado = 0
+        object.save()
+
+def eliminacion_Logica(self, request, queryset):
+    for object in queryset:
+        object.eliminado = 1
+        object.save()
+
+class CamposPersonalizadosNuevaCuentaAdmin(admin.ModelAdmin):
     list_display = ('idcampo', 'nombre', 'placeholder', 'identificador')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
+    
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
-@admin.register(CamposPersonalizadosEntidad)
-class CamposPersonalizadosEntidadAdmin(ImportExportModelAdmin):
+class CamposPersonalizadosEntidadAdmin(admin.ModelAdmin):
     list_display = ('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
 
-@admin.register(TiposCampos)
-class TiposCamposAdmin(ImportExportModelAdmin):
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+class TiposCamposAdmin(admin.ModelAdmin):
     list_display = ('idtipo', 'nombre', 'descripcion')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
 
-@admin.register(OpcionesCampo)
-class OpcionesCampoAdmin(ImportExportModelAdmin):
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+class OpcionesCampoAdmin(admin.ModelAdmin):
     list_display = ('idopcion', 'valor', 'nombre')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+admin.site.register(CamposPersonalizadosNuevaCuenta, CamposPersonalizadosNuevaCuentaAdmin)
+admin.site.register(CamposPersonalizadosEntidad, CamposPersonalizadosEntidadAdmin)
+admin.site.register(TiposCampos, TiposCamposAdmin)
+admin.site.register(OpcionesCampo, OpcionesCampoAdmin)

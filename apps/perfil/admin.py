@@ -1,16 +1,35 @@
-from import_export.admin import ImportExportModelAdmin
-#
 from django.contrib import admin
 from .models import *
 
-@admin.register(Perfil)
-class PerfilAdmin(ImportExportModelAdmin):
+def acticacion_Logica(self, request, queryset):
+    for object in queryset:
+        object.eliminado = 0
+        object.save()
+
+def eliminacion_Logica(self, request, queryset):
+    for object in queryset:
+        object.eliminado = 1
+        object.save()
+
+class PerfilAdmin(admin.ModelAdmin):
     list_display = ('idperfil', 'perfil', 'descripcion')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
+    
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
-@admin.register(PerfilAdministrador)
-class PerfilAdministradorAdmin(ImportExportModelAdmin):
+class PerfilAdministradorAdmin(admin.ModelAdmin):
     list_display = ('idadministrador', 'idperfil')
-    pass
+    actions = [acticacion_Logica, eliminacion_Logica]
+    
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
-
+admin.site.register(Perfil, PerfilAdmin)
+admin.site.register(PerfilAdministrador, PerfilAdministradorAdmin)

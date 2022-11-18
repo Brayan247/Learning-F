@@ -3,10 +3,8 @@ from .views_admin import *
 from .views import *
 from apps.administrador.utilities import *
 
-user = get_user_id()
-print(user.is_superuser)
-if(user.is_superuser == False):
-    urlpatterns = [
+
+urlpatterns = [
     # views
     path('entidad/', EntidadList.as_view()),
     path('emoticon/', EmoticonList.as_view()),

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %} Seleccione mensaje a modificar | Sitio de administración de Django {% endblock %}
+{% block content %}
+<div class="breadcrumbs">
+    <a href="/admin/">Inicio</a>
+    &rsaquo; <a href="/admin/mensajes/">Mensajes</a>
+    &rsaquo; Mesajes
+</div>
+<div class="main" id="main">
+    <div class="content">
+        <!-- Content -->
+        <div id="content" class="">
+            <h1>Seleccione mensaje a modificar</h1>
+            <div id="content-main">
+                <div class="module" id="changelist">
+                    <div class="changelist-form-container">
+                        <form id="changelist-form" method="post" novalidate="">
+                            {% if not mensaje_list %}
+                                <p class="paginator">{{ mensaje_list|length }} mensajes</p>
+                            {% else %}
+                                <div class="results">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="sortable column-idmensaje">
+                                                    <div class="text"><a href="?o=0">Id Mensaje</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-mensaje">
+                                                    <div class="text"><a href="?o=1">Mensaje</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-descripcion">
+                                                    <div class="text"><a href="?o=2">Descripcion</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-descripcion">
+                                                    <div class="text"><a href="?o=2">Id Entidad</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for c in mensaje_list %}
+                                            <tr>
+                                                <td><a
+                                                        href="/admin/mensajes/mensaje/{{ c.idmensaje }}/change/">{{c.idmensaje}}</a>
+                                                </td>
+                                                <td>{{ c.mensaje }}</td>
+                                                <td>{{ c.descripcion }}</td>
+                                                <td>{{ c.identidad }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="paginator">{{ mensaje_list|length }} mensajes</p>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+    </div>
+</div>
+{% endblock %}

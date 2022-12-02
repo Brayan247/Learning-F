@@ -15,10 +15,15 @@ class Modulo(models.Model):
     idadministradorregistro = models.IntegerField(db_column='idAdministradorRegistro')  # Field name made lowercase.
     idadministradoractualizo = models.IntegerField(db_column='idAdministradorActualizo', blank=True, null=True)  # Field name made lowercase.
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
     id_servicio = models.IntegerField(blank=True, null=True)
     vistapath = models.CharField(db_column='vistaPath', max_length=95)  # Field name made lowercase.
+
+    def delete(self):
+        modulo = Modulo.objects.get(idmodulo = self.idmodulo)
+        modulo.eliminado = 1
+        return modulo.save()
 
     class Meta:
         managed = True
@@ -28,7 +33,12 @@ class Modulo(models.Model):
 class ModuloPerfil(models.Model):
     idmodulo = models.IntegerField(db_column='idModulo', primary_key=True)  # Field name made lowercase.
     idperfil = models.IntegerField(db_column='idPerfil')  # Field name made lowercase.
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
+
+    def delete(self):
+        mp = ModuloPerfil.objects.get(idmodulo = self.idmodulo)
+        mp.eliminado = 1
+        return mp.save()
 
     class Meta:
         managed = True
@@ -43,7 +53,7 @@ class Moduloadministrador(models.Model):
     leer = models.IntegerField()
     crear = models.IntegerField()
     editar = models.IntegerField()
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
     fecha_lectura = models.DateTimeField()
     fecha_crear = models.DateTimeField(blank=True, null=True)
     fecha_editar = models.DateTimeField(blank=True, null=True)
@@ -52,7 +62,11 @@ class Moduloadministrador(models.Model):
     idadministradoractualizo = models.IntegerField(db_column='idAdministradorActualizo', blank=True, null=True)  # Field name made lowercase.
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
-    eliminado = models.IntegerField()
+
+    def delete(self):
+        ma = Moduloadministrador.objects.get(idadministrador = self.idadministrador)
+        ma.eliminado = 1
+        return ma.save()
 
     class Meta:
         managed = True

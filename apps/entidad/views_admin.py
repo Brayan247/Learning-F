@@ -6,7 +6,7 @@ from apps.administrador.utilities import *
 
 class CanalList(ListView):
     context_object_name = 'canal_list'
-    template_name = 'entidad/canal_list.html'
+    template_name = 'admin/entidad/canal_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -14,12 +14,12 @@ class CanalList(ListView):
             queryset =  Canal.objects.all()
             return queryset
         else:
-            queryset =  Canal.objects.all().filter(id_entidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Canal.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
         
 class EntidadList(ListView):
     context_object_name = 'entidad_list'
-    template_name = 'entidad/entidad_list.html'
+    template_name = 'admin/entidad/entidad_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -27,12 +27,12 @@ class EntidadList(ListView):
             queryset =  Entidad.objects.all()
             return queryset
         else:
-            queryset =  Entidad.objects.all().filter(identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Entidad.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
         
 class EmoticonList(ListView):
     context_object_name = 'emoticon_list'
-    template_name = 'entidad/emoticon_list.html'
+    template_name = 'admin/entidad/emoticon_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -40,12 +40,12 @@ class EmoticonList(ListView):
             queryset =  Emoticon.objects.all()
             return queryset
         else:
-            queryset =  Emoticon.objects.all().filter(identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Emoticon.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class PaginaList(ListView):
     context_object_name = 'pagina_list'
-    template_name = 'entidad/pagina_list.html'
+    template_name = 'admin/entidad/pagina_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -53,12 +53,12 @@ class PaginaList(ListView):
             queryset =  Pagina.objects.all()
             return queryset
         else:
-            queryset =  Pagina.objects.all().filter(identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Pagina.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
         
 class RecursosEntidadList(ListView):
     context_object_name = 're_list'
-    template_name = 'entidad/recursosentidad_list.html'
+    template_name = 'admin/entidad/recursosentidad_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -66,12 +66,12 @@ class RecursosEntidadList(ListView):
             queryset =  RecursosEntidad.objects.all()
             return queryset
         else:
-            queryset =  RecursosEntidad.objects.all().filter(id_entidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  RecursosEntidad.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class SucursalList(ListView):
     context_object_name = 'sucursal_list'
-    template_name = 'entidad/sucursal_list.html'
+    template_name = 'admin/entidad/sucursal_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -79,12 +79,12 @@ class SucursalList(ListView):
             queryset =  Sucursal.objects.all()
             return queryset
         else:
-            queryset =  Sucursal.objects.all().filter(id_entidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Sucursal.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class TerminosYCondicionesList(ListView):
     context_object_name = 'tyc_list'
-    template_name = 'entidad/terminosycondiciones_list.html'
+    template_name = 'admin/entidad/terminosycondiciones_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -92,18 +92,18 @@ class TerminosYCondicionesList(ListView):
             queryset =  TerminosCondiciones.objects.all()
             return queryset
         else:
-            queryset =  TerminosCondiciones.objects.all().filter(entidad_identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  TerminosCondiciones.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class IntencionList(ListView):
     context_object_name = 'intencion_list'
-    template_name = 'entidad/intencion_list.html'
+    template_name = 'admin/entidad/intencion_list.html'
     def get_queryset(self):
         user = self.request.user
         if(user.is_superuser):
             queryset =  Intencion.objects.all()
             return queryset
         else:
-            queryset =  Intencion.objects.all().filter(identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Intencion.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 

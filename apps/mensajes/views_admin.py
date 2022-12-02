@@ -6,7 +6,7 @@ from apps.administrador.utilities import *
 
 class MensajeList(ListView):
     context_object_name = 'mensaje_list'
-    template_name = 'mensajes/mensaje_list.html'
+    template_name = 'admin/mensajes/mensaje_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -14,12 +14,12 @@ class MensajeList(ListView):
             queryset =  Mensaje.objects.all()
             return queryset
         else:
-            queryset =  Mensaje.objects.all().filter(identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  Mensaje.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class MensajesErroresList(ListView):
     context_object_name = 'me_list'
-    template_name = 'mensajes/mensajeserrores_list.html'
+    template_name = 'admin/mensajes/mensajeserrores_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -27,6 +27,5 @@ class MensajesErroresList(ListView):
             queryset =  MensajeErrores.objects.all()
             return queryset
         else:
-            queryset =  MensajeErrores.objects.all().filter(id_entidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  MensajeErrores.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
             return queryset
-        

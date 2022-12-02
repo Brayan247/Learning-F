@@ -16,7 +16,12 @@ class ClienteBot(models.Model):
     recurso_url = models.URLField()
     fecha_actualizacion = models.DateTimeField()
     fecha_registro = models.DateTimeField()
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
+
+    def delete(self):
+        clientebot = ClienteBot.objects.get(idcliente = self.idcliente)
+        clientebot.eliminado = 1
+        return clientebot.save()
 
     class Meta:
         managed = True
@@ -25,7 +30,12 @@ class ClienteBot(models.Model):
 class ClienteBotHasEntidad(models.Model):
     cliente_bot_idcliente = models.OneToOneField(ClienteBot, models.DO_NOTHING, db_column='cliente_bot_idCliente', primary_key=True)  # Field name made lowercase.
     entidad_identidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='entidad_idEntidad')  # Field name made lowercase.
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
+
+    def delete(self):
+        cbhe = ClienteBotHasEntidad.objects.get(cliente_bot_idcliente = self.cliente_bot_idcliente)
+        cbhe.eliminado = 1
+        return cbhe.save()
 
     class Meta:
         managed = True

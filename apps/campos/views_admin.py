@@ -6,7 +6,7 @@ from apps.administrador.utilities import *
 
 class CamposPersonalizadosEntidadList(ListView):
     context_object_name = 'cpe_list'
-    template_name = 'campos/campos_personalizados_entidad_list.html'
+    template_name = 'admin/campos/campos_personalizados_entidad_list.html'
 
     def get_queryset(self):
         user = self.request.user
@@ -14,6 +14,6 @@ class CamposPersonalizadosEntidadList(ListView):
             queryset =  CamposPersonalizadosEntidad.objects.all()
             return queryset
         else:
-            queryset =  CamposPersonalizadosEntidad.objects.all().filter(entidad_identidad = get_id_entidad(user)).filter(eliminado = 0)
+            queryset =  CamposPersonalizadosEntidad.objects.filter(entidad_identidad = get_id_entidad(user), eliminado = 0)
             return queryset
         

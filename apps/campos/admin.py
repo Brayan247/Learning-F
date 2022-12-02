@@ -1,47 +1,19 @@
 from django.contrib import admin
 from .models import *
+from import_export.admin import ImportExportModelAdmin
+from apps.administrador.utilities import ParentAdmin
 
-from apps.administrador.utilities import *
+class CamposPersonalizadosNuevaCuentaAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idcampo', 'nombre', 'eliminado')
 
-class CamposPersonalizadosNuevaCuentaAdmin(admin.ModelAdmin):
-    list_display = ('idcampo', 'nombre', 'placeholder', 'identificador')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class CamposPersonalizadosEntidadAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo', 'eliminado')
 
-class CamposPersonalizadosEntidadAdmin(admin.ModelAdmin):
-    list_display = ('entidad_identidad', 'campos_personalizados_nueva_cuenta_idcampo')
-    actions = [acticacion_Logica, eliminacion_Logica]
+class TiposCamposAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idtipo', 'nombre', 'eliminado')
 
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-class TiposCamposAdmin(admin.ModelAdmin):
-    list_display = ('idtipo', 'nombre', 'descripcion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-class OpcionesCampoAdmin(admin.ModelAdmin):
-    list_display = ('idopcion', 'valor', 'nombre')
-    actions = [acticacion_Logica, eliminacion_Logica]
-
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class OpcionesCampoAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idopcion', 'valor', 'nombre', 'eliminado')
 
 admin.site.register(CamposPersonalizadosNuevaCuenta, CamposPersonalizadosNuevaCuentaAdmin)
 admin.site.register(CamposPersonalizadosEntidad, CamposPersonalizadosEntidadAdmin)

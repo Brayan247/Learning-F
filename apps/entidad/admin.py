@@ -1,157 +1,52 @@
 from django.contrib import admin
 from .models import *
+from import_export.admin import ImportExportModelAdmin
+from apps.administrador.utilities import ParentAdmin
 
-from apps.administrador.utilities import *
+class EntidadAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('identidad', 'nombre', 'eliminado')
 
-class EntidadAdmin(admin.ModelAdmin):
-    list_display = ('identidad', 'nombre')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class ContratoAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idcontrato', 'nombre', 'acronimo', 'duracion', 'eliminado')
 
-class ContratoAdmin(admin.ModelAdmin):
-    list_display = ('idcontrato', 'nombre', 'acronimo', 'duracion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class EmoticonAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idemoticon', 'emoticon', 'eliminado')
 
-class EmoticonAdmin(admin.ModelAdmin):
-    list_display = ('idemoticon', 'emoticon', 'descripcion', 'codigo')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class CanalAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idcanal', 'nombre', 'id_entidad', 'eliminado')
 
-class CanalAdmin(admin.ModelAdmin):
-    list_display = ('idcanal', 'nombre', 'id_entidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class TipoCanalAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idtipocanal', 'nombre', 'eliminado')
 
-class TipoCanalAdmin(admin.ModelAdmin):
-    list_display = ('idtipocanal', 'nombre', 'descripcion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class RecursosEntidadAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idrecursos','path', 'tipo', 'id_entidad', 'eliminado')
 
-class RecursosEntidadAdmin(admin.ModelAdmin):
-    list_display = ('idrecursos','path', 'tipo', 'id_entidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class ConfigRecursoAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('clave', 'valor', 'eliminado')
 
-class ConfigRecursoAdmin(admin.ModelAdmin):
-    list_display = ('clave', 'valor', 'type', 'descripcion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class ListaNegraAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('cedula', 'correo', 'eliminado')
 
-class ListaNegraAdmin(admin.ModelAdmin):
-    list_display = ('cedula', 'correo')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class ServiciosEntidadAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('id_servicio', 'id_entidad', 'eliminado')
 
-class ServiciosEntidadAdmin(admin.ModelAdmin):
-    list_display = ('id_servicio', 'id_entidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class PaginaAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idpagina','identidad', 'nombre', 'eliminado')
 
-class PaginaAdmin(admin.ModelAdmin):
-    list_display = ('idpagina','identidad', 'nombre')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class SucursalAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('nombre','referencia','id_entidad', 'eliminado')
 
-class SucursalAdmin(admin.ModelAdmin):
-    list_display = ('nombre','referencia','id_entidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class TerminosCondicionesAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idtermino','titulo', 'entidad_identidad', 'eliminado')
 
-class TerminosCondicionesAdmin(admin.ModelAdmin):
-    list_display = ('idtermino','titulo', 'descripcion', 'entidad_identidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class IntencionAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idintencion', 'intencion', 'identidad', 'eliminado')
 
-class IntencionAdmin(admin.ModelAdmin):
-    list_display = ('idintencion', 'intencion', 'descripcion', 'identidad')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class IntencionTipoAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idtipointencion', 'tipo', 'eliminado')
 
-class IntencionTipoAdmin(admin.ModelAdmin):
-    list_display = ('idtipointencion', 'tipo', 'descripcion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-class ServicioAdmin(admin.ModelAdmin):
-    list_display = ( 'servicio', 'descripcion')
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class ServicioAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ( 'servicio', 'descripcion', 'eliminado')
 
 admin.site.register(Canal, CanalAdmin)
 admin.site.register(Entidad, EntidadAdmin)

@@ -11,7 +11,7 @@ class Pais(models.Model):
     idadministradoractualizo = models.IntegerField(db_column='idAdministradorActualizo', blank=True, null=True)  # Field name made lowercase.
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
-    eliminado = models.IntegerField(default=0)  # This field type is a guess.
+    eliminado = models.IntegerField(default=0, editable=False)  # This field type is a guess.
     limite = models.TextField(blank=True, null=True)  # This field type is a guess.
     idmoneda = models.IntegerField(db_column='idMoneda', blank=True, null=True)  # Field name made lowercase.
     min_digitos_cedula = models.IntegerField(blank=True, null=True)
@@ -21,9 +21,17 @@ class Pais(models.Model):
     validar_cedula = models.IntegerField(blank=True, null=True)
     numericos = models.IntegerField(blank=True, null=True)
 
+    def delete(self):
+        pais = Pais.objects.get(idpais = self.idpais)
+        pais.eliminado = 1
+        return pais.save()
+
     class Meta:
         managed = True
         db_table = 'pais'
+    
+    def __str__(self):
+        return f"{self.pais}"
 
 class Moneda(models.Model):
     id_moneda = models.AutoField(primary_key=True)
@@ -33,12 +41,20 @@ class Moneda(models.Model):
     descripcion = models.CharField(max_length=300)
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField()
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
     pais = models.IntegerField()
+
+    def delete(self):
+        moneda = Moneda.objects.get(id_moneda = self.id_moneda)
+        moneda.eliminado = 1
+        return moneda.save()
 
     class Meta:
         managed = True
         db_table = 'moneda'
+
+    def __str__(self):
+        return f"{self.moneda}"
 
 class Ciudad(models.Model):
     idciudad = models.AutoField(db_column='idCiudad', primary_key=True)  # Field name made lowercase.
@@ -50,12 +66,17 @@ class Ciudad(models.Model):
     fecha_registro = models.DateTimeField()
     fecha_actualizacion = models.DateTimeField(blank=True, null=True)
     limite = models.TextField(blank=True, null=True)  # This field type is a guess.
-    eliminado = models.IntegerField(default=0)
+    eliminado = models.IntegerField(default=0, editable=False)
     comentario = models.CharField(max_length=500)
     zonahoraria = models.CharField(db_column='zonaHoraria', max_length=6, blank=True, null=True)  # Field name made lowercase.
     type = models.CharField(max_length=100)
     id_padre = models.IntegerField()
     pais_idpais = models.ForeignKey('Pais', models.DO_NOTHING, db_column='pais_idPais')  # Field name made lowercase.
+
+    def delete(self):
+        ciudad = Ciudad.objects.get(idciudad = self.idciudad)
+        ciudad.eliminado = 1
+        return ciudad.save()
 
     def __str__(self):
         return f"{self.ciudad}"

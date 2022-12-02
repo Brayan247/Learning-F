@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %} Seleccione intencion a modificar | Sitio de administración de Django {% endblock %}
+{% block content %}
+<div class="breadcrumbs">
+    <a href="/admin/">Inicio</a>
+    &rsaquo; <a href="/admin/entidad/">Entidad</a>
+    &rsaquo; Intenciones
+</div>
+<div class="main" id="main">
+    <div class="content">
+        <!-- Content -->
+        <div id="content" class="">
+            <h1>Seleccione intencion a modificar</h1>
+            <ul class="object-tools">
+                <li><a href="/admin/entidad/intencion/add/" class="addlink">Añadir intencion</a></li>
+            </ul>
+            <div id="content-main">
+                <div class="module" id="changelist">
+                    <div class="changelist-form-container">
+                        <form id="changelist-form" method="post" novalidate="">
+                            {% if not intencion_list %}
+                                <p class="paginator">{{ intencion_list|length }} intenciones</p>
+                            {% else %}
+                                <div class="results">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="sortable column-idintencion">
+                                                    <div class="text"><a href="?o=1">Id Intencion</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-intencion">
+                                                    <div class="text"><a href="?o=2">Intencion</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-descripcion">
+                                                    <div class="text"><a href="?o=3">Descripcion</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col" class="sortable column-identidad">
+                                                    <div class="text"><a href="?o=4">Id Entidad</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for c in intencion_list %}
+                                            <tr>
+                                                <td><a
+                                                        href="/admin/entidad/intencion/{{c.idintencion}}/change/">{{c.idintencion}}</a>
+                                                </td>
+                                                <td>{{ c.intencion }}</td>
+                                                <td>{{ c.descripcion }}</td>
+                                                <td>{{ c.identidad }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="paginator">{{ intencion_list|length }} intenciones</p>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+    </div>
+</div>
+{% endblock %}

@@ -2,6 +2,8 @@ from django.db import models
 # Utilizado para acceder a los modelos del admin
 from django.contrib.auth.models import User
 # Acciones de formulario
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class Administrador(models.Model):
@@ -34,8 +36,13 @@ class Administrador(models.Model):
     fecha_cambio_clave = models.DateTimeField(blank=True, null=True)
     fecha_recupero_clave = models.DateTimeField(blank=True, null=True)
     idtipoidentificacion = models.IntegerField(db_column='idTipoIdentificacion', blank=True, null=True)  # Field name made lowercase.
-    eliminado = models.IntegerField(default=0)    
-    
+    eliminado = models.IntegerField(default=0, editable=False)    
+
+    def delete(self):
+        administrador = Administrador.objects.get(idadministrador = self.idadministrador)
+        administrador.eliminado = 1
+        return administrador.save()
+
     class Meta:
         managed = True
         db_table = 'administrador'
@@ -45,11 +52,16 @@ class UserEntidad(models.Model):
     #Accederemos al modelo de User del admin
     id_user  = models.ForeignKey(User, models.DO_NOTHING, db_column = 'id_user')
     id_entidad = models.ForeignKey('entidad.Entidad', models.DO_NOTHING, db_column='id_entidad')
-    eliminado = models.IntegerField(default=0)  
+    eliminado = models.IntegerField(default=0, editable=False)  
 
     def __str__(self):
         return f"{self.id_user_entidad}{self.id_user}{self.id_entidad}" 
     
+    def delete(self):
+        userEntidad = UserEntidad.objects.get(id_user_entidad = self.id_user_entidad)
+        userEntidad.eliminado = 1
+        return userEntidad.save()
+
     class Meta:
         managed = True
         db_table = 'user_entidad'

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %} Seleccione campos personalizados entidad a modificar | Sitio de administración de Django {% endblock %}
+{% block content %}
+<div class="breadcrumbs">
+    <a href="/admin/">Inicio</a>
+    &rsaquo; <a href="/admin/campos/">Campos</a>
+    &rsaquo; Campos personalizados entidads
+</div>
+<div class="main" id="main">
+    <div class="content">
+        <!-- Content -->
+        <div id="content" class="">
+            <h1>Seleccione campos personalizados entidad a modificar</h1>
+            <div id="content-main">
+                <div class="module" id="changelist">
+                    <div class="changelist-form-container">
+                        <form id="changelist-form" method="post" novalidate="">
+                            {% if not cpe_list %}
+                                <p class="paginator">{{ cpe_list|length }} campos personalizados entidad</p>
+                            {% else %}
+                                <div class="results">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="sortable column-entidad_identidad">
+                                                    <div class="text"><a href="?o=0">Entidad identidad</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                                <th scope="col"
+                                                    class="sortable column-campos_personalizados_nueva_cuenta_idcampo">
+                                                    <div class="text"><a href="?o=1">Campos personalizados nueva cuenta
+                                                            idcampo</a></div>
+                                                    <div class="clear"></div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for cpe in cpe_list %}
+                                            <tr>
+                                                <td><a href="/admin/campos/campospersonalizadosentidad/{{cpe.entidad_identidad.identidad}}/change/">{{cpe.entidad_identidad}}</a>
+                                                </td>
+                                                <td>{{ cpe.campos_personalizados_nueva_cuenta_idcampo }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p class="paginator">{{ cpe_list|length }} campos personalizados entidad</p>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+    </div>
+</div>
+{% endblock %}

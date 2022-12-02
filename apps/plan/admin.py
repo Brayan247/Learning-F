@@ -1,37 +1,16 @@
 from django.contrib import admin
 from .models import *
+from import_export.admin import ImportExportModelAdmin
+from apps.administrador.utilities import ParentAdmin
 
-from apps.administrador.utilities import *
-
-class PlanAdmin(admin.ModelAdmin):
-    list_display = ('idplan', 'nombre', 'acronimo', 'descripcion', 'costo')
-    actions = [acticacion_Logica, eliminacion_Logica]
+class PlanAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('idplan', 'nombre', 'eliminado')
     
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-class DetallePlanAdmin(admin.ModelAdmin):
-    list_display = ('plan_idplan', 'modulo_idmodulo')
-    actions = [acticacion_Logica, eliminacion_Logica]
+class DetallePlanAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('plan_idplan', 'modulo_idmodulo', 'eliminado')
     
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-class PlanContratosAdmin(admin.ModelAdmin):
-    list_display = ('plan_idplan', 'contrato_idcontrato', 'contrato_entidad_identidad',)
-    actions = [acticacion_Logica, eliminacion_Logica]
-    
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
+class PlanContratosAdmin(ParentAdmin, ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ('plan_idplan', 'contrato_idcontrato', 'contrato_entidad_identidad', 'eliminado')
 
 admin.site.register(Plan, PlanAdmin)
 admin.site.register(DetallePlan, DetallePlanAdmin)

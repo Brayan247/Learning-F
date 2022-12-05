@@ -1,72 +1,57 @@
 {% extends "base.html" %}
 {% block title %} Seleccione sucursal a modificar | Sitio de administración de Django {% endblock %}
-{% block content %}
-<div class="breadcrumbs">
+{% block navbar %}
     <a href="/admin/">Inicio</a>
     &rsaquo; <a href="/admin/entidad/">Entidad</a>
     &rsaquo; Sucursales
-</div>
-<div class="main" id="main">
-    <div class="content">
-        <!-- Content -->
-        <div id="content" class="">
-            <h1>Seleccione sucursal a modificar</h1>
-            <ul class="object-tools">
-                <li><a href="/admin/entidad/sucursal/add/" class="addlink">Añadir sucursal</a></li>
-            </ul>
-            <div id="content-main">
-                <div class="module" id="changelist">
-                    <div class="changelist-form-container">
-                        <form id="changelist-form" method="post" novalidate="">
-                            {% if not sucursal_list %}
-                                <p class="paginator">{{ sucursal_list|length }} sucursales</p>
-                            {% else %}
-                                <div class="results">
-                                    <table>
-                                        <caption>Sucursal</caption>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="sortable column-nombre">
-                                                    <div class="text"><a href="?o=1">Id</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                                <th scope="col" class="sortable column-nombre">
-                                                    <div class="text"><a href="?o=1">Nombre</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                                <th scope="col" class="sortable column-referencia">
-                                                    <div class="text"><a href="?o=2">Referencia</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                                <th scope="col" class="sortable column-id_entidad">
-                                                    <div class="text"><a href="?o=3">Id entidad</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for c in sucursal_list %}
-                                            <tr>
-                                                <td><a href="/admin/entidad/sucursal/{{c.id}}/change/">{{c.id}}</a>
-                                                </td>
-                                                <td>{{ c.nombre }}</td>
-                                                <td>{{ c.referencia }}</td>
-                                                <td>{{ c.id_entidad }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="paginator">{{ sucursal_list|length }} sucursales</p>
-                            {% endif %}
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <br class="clear">
-        </div>
-        <!-- END Content -->
-        <div id="footer"></div>
-    </div>
-</div>
-{% endblock %}
+{% endblock navbar %}
+{% block tableTittle %}Seleccione sucursal a modificar{% endblock tableTittle %}
+{% block add %}
+    <li><a href="/admin/entidad/sucursal/add/" class="addlink">Añadir sucursal</a></li>
+{% endblock add %}
+{% block emptyList %}
+    {% if not sucursal_list %}
+    <p class="paginator">{{ sucursal_list|length }} sucursales</p>
+    {% endif %}
+{% endblock emptyList %}
+{% block caption %}Sucursal{% endblock caption %}
+{% block thead %}
+    {% if sucursal_list %}
+    <tr>
+        <th scope="col" class="sortable column-nombre">
+            <div class="text"><a href="?o=1">Id</a></div>
+            <div class="clear"></div>
+        </th>
+        <th scope="col" class="sortable column-nombre">
+            <div class="text"><a href="?o=1">Nombre</a></div>
+            <div class="clear"></div>
+        </th>
+        <th scope="col" class="sortable column-referencia">
+            <div class="text"><a href="?o=2">Referencia</a></div>
+            <div class="clear"></div>
+        </th>
+        <th scope="col" class="sortable column-id_entidad">
+            <div class="text"><a href="?o=3">Id entidad</a></div>
+            <div class="clear"></div>
+        </th>
+    </tr>
+    {% endif %}
+{% endblock thead %}
+{% block tbody %}
+    {% if sucursal_list %}
+        {% for c in sucursal_list %}
+        <tr>
+            <td><a href="/admin/entidad/sucursal/{{c.id}}/change/">{{c.id}}</a>
+            </td>
+            <td>{{ c.nombre }}</td>
+            <td>{{ c.referencia }}</td>
+            <td>{{ c.id_entidad }}</td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+{% endblock tbody %}
+{% block paginator %}
+    {% if sucursal_list %}
+        <p class="paginator">{{ sucursal_list|length }} sucursales</p>
+    {% endif %}
+{% endblock paginator %}

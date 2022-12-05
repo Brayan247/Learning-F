@@ -14,7 +14,7 @@ class MensajeList(ListView):
             queryset =  Mensaje.objects.all()
             return queryset
         else:
-            queryset =  Mensaje.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  Mensaje.objects.filter(identidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class MensajesErroresList(ListView):

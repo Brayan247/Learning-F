@@ -32,13 +32,53 @@
                 <h1 id="site-name"><a href="/admin/">Administración de Django</a></h1>
             </div>
             <div id="user-tools">
-                Bienvenidos, <strong>{{request.user.username}}.</strong> 
+                Bienvenidos, <strong>{{request.user.username}}.</strong>
                 <a href="/">Ver el sitio</a> /
                 <a href="/admin/password_change/">Cambiar contraseña</a> /
                 <a href="/admin/logout/">Cerrar sesión</a>
             </div>
         </div>
-        {% block content %}{% endblock %}
+        <div class="breadcrumbs">
+            {% block navbar %}
+            {% endblock navbar %}
+        </div>
+        <div class="main" id="main">
+            <div class="content">
+                <!-- Content -->
+                <div id="content" class="">
+                    <h1>{% block tableTittle %}{% endblock tableTittle %}</h1>
+                    <div id="content-main">
+                        <ul class="object-tools">
+                            {% block add %}{% endblock add %}
+                        </ul>
+                        <div class="module" id="changelist">
+                            <div class="changelist-form-container">
+                                <form id="changelist-form" method="post" novalidate="">
+                                    {% block emptyList %}
+                                    {% endblock emptyList %}
+                                    <div class="results">
+                                        <table>
+                                            <caption style="display: none;">{% block caption %}{% endblock caption %}
+                                            </caption>
+                                            <thead>
+                                                {% block thead %}{% endblock thead %}
+                                            </thead>
+                                            <tbody>
+                                                {% block tbody %}{% endblock tbody %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% block paginator %}{% endblock paginator %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <br class="clear">
+                </div>
+                <!-- END Content -->
+                <div id="footer"></div>
+            </div>
+        </div>
         <div id="footer"></div>
     </div>
     </div>

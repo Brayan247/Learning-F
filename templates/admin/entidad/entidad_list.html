@@ -1,59 +1,44 @@
 {% extends "base.html" %}
 {% block title %} Seleccione entidad a modificar | Sitio de administración de Django {% endblock %}
-{% block content %}
-<div class="breadcrumbs">
+{% block navbar %}
     <a href="/admin/">Inicio</a>
     &rsaquo; <a href="/admin/entidad/">Entidad</a>
     &rsaquo; Entidades
-</div>
-<div class="main" id="main">
-    <div class="content">
-        <!-- Content -->
-        <div id="content" class="">
-            <h1>Seleccione entidad a modificar</h1>
-            <div id="content-main">
-                <div class="module" id="changelist">
-                    <div class="changelist-form-container">
-                        <form id="changelist-form" method="post" novalidate="">
-                            {% if not entidad_list %}
-                                <p class="paginator">{{ entidad_list|length }} entidads</p>
-                            {% else %}
-                                <div class="results">
-                                    <table>
-                                        <caption>Entidad</caption>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="sortable column-identidad">
-                                                    <div class="text"><a href="?o=0">Id entidad</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                                <th scope="col" class="sortable column-nombre">
-                                                    <div class="text"><a href="?o=1">Nombre</a></div>
-                                                    <div class="clear"></div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for c in entidad_list %}
-                                            <tr>
-                                                <td><a href="/admin/entidad/entidad/{{c.identidad}}/change/">{{c.identidad}}</a>
-                                                </td>
-                                                <td>{{ c.nombre }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="paginator">{{ entidad_list|length }} entidads</p>
-                            {% endif %}
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <br class="clear">
-        </div>
-        <!-- END Content -->
-        <div id="footer"></div>
-    </div>
-</div>
-{% endblock %}
+{% endblock navbar %}
+{% block tableTittle %}Seleccione entidad a modificar{% endblock tableTittle %}
+{% block emptyList %}
+    {% if not entidad_list %}
+        <p class="paginator">{{ entidad_list|length }} entidads</p>
+    {% endif %}
+{% endblock emptyList %}
+{% block caption %}Entidad{% endblock caption %}
+{% block thead %}
+    {% if entidad_list %}
+    <tr>
+        <th scope="col" class="sortable column-identidad">
+            <div class="text"><a href="?o=0">Id entidad</a></div>
+            <div class="clear"></div>
+        </th>
+        <th scope="col" class="sortable column-nombre">
+            <div class="text"><a href="?o=1">Nombre</a></div>
+            <div class="clear"></div>
+        </th>
+    </tr>
+    {% endif %}
+{% endblock thead %}
+{% block tbody %}
+    {% if entidad_list %}
+        {% for c in entidad_list %}
+        <tr>
+            <td><a href="/admin/entidad/entidad/{{c.identidad}}/change/">{{c.identidad}}</a>
+            </td>
+            <td>{{ c.nombre }}</td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+{% endblock tbody %}
+{% block paginator %}
+    {% if entidad_list %}
+        <p class="paginator">{{ entidad_list|length }} entidads</p>
+    {% endif %}
+{% endblock paginator %}

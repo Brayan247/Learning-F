@@ -27,7 +27,7 @@ class EntidadList(ListView):
             queryset =  Entidad.objects.all()
             return queryset
         else:
-            queryset =  Entidad.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  Entidad.objects.filter(identidad = get_id_entidad(user), eliminado = 0)
             return queryset
         
 class EmoticonList(ListView):
@@ -40,7 +40,7 @@ class EmoticonList(ListView):
             queryset =  Emoticon.objects.all()
             return queryset
         else:
-            queryset =  Emoticon.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  Emoticon.objects.filter(identidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class PaginaList(ListView):
@@ -53,7 +53,7 @@ class PaginaList(ListView):
             queryset =  Pagina.objects.all()
             return queryset
         else:
-            queryset =  Pagina.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  Pagina.objects.filter(identidad = get_id_entidad(user), eliminado = 0)
             return queryset
         
 class RecursosEntidadList(ListView):
@@ -92,7 +92,7 @@ class TerminosYCondicionesList(ListView):
             queryset =  TerminosCondiciones.objects.all()
             return queryset
         else:
-            queryset =  TerminosCondiciones.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  TerminosCondiciones.objects.filter(entidad_identidad = get_id_entidad(user), eliminado = 0)
             return queryset
 
 class IntencionList(ListView):
@@ -104,6 +104,6 @@ class IntencionList(ListView):
             queryset =  Intencion.objects.all()
             return queryset
         else:
-            queryset =  Intencion.objects.filter(id_entidad = get_id_entidad(user), eliminado = 0)
+            queryset =  Intencion.objects.filter(identidad = get_id_entidad(user), eliminado = 0)
             return queryset
 

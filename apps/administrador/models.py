@@ -1,9 +1,6 @@
 from django.db import models
 # Utilizado para acceder a los modelos del admin
 from django.contrib.auth.models import User
-# Acciones de formulario
-from django.db.models.signals import post_delete
-from django.dispatch import receiver
 
 
 class Administrador(models.Model):

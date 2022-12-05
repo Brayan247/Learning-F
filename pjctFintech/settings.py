@@ -1,6 +1,10 @@
 from pathlib import Path
 
-from django import apps
+import environ
+
+# Environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,10 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)&=vtuibm9r9$7d^1jxez)gb-#se%tzf@j%9h5k&x6$ahk&3fw'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -76,9 +80,9 @@ WSGI_APPLICATION = 'pjctFintech.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'fintech',
-            'USER': 'root',
-            'PASSWORD': 'root',
+            'NAME': env("DATABASE_NAME"),
+            'USER': env("DATABASE_USER"),
+            'PASSWORD': env("DATABASE_USER"),
             'HOST': 'localhost',
             'PORT': '3306',
             'DEFAULT_CHARSET': 'UFT-8',
